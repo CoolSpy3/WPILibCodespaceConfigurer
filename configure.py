@@ -9,6 +9,10 @@ if len(args) < 1:
 	print("No Projects Specified")
 	exit()
 
+if "-h" in args or "--help" in args:
+	print("Usage: configure.py [-u <name>] [repos]")
+	exit(0)
+
 if args[0].lower() == "-u":
 	args.pop(0)
 	user = args[0]
@@ -35,7 +39,8 @@ try:
 		os.chdir(dir)
 		match = repoPattern.match(repo)
 		if not match:
-			print("invalid repo")
+			print(f'Invalid Repo: {repo}')
+			continue
 		name = match.group(1)
 		try:
 			os.system(f'git clone --recurse-submodules {repo}')
