@@ -49,6 +49,7 @@ try:
 			os.system('git commit -m "support codespaces"')
 			os.system('git push')
 		finally:
+			os.chdir(dir)
 			os.system(f'rm -rf {name}')
 
 finally:
